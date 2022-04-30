@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  plex:
+    image: ec2-app
+    env_file: .env
+    ports:
+     - "8080:8080"

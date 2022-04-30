@@ -4,6 +4,7 @@
 	"description": "fun",
 	"main": "dist/index.js",
 	"scripts": {
+		"build": "tsc",
 		"test": "test",
 		"watch": "tsc -w",
 		"dev": "nodemon",
