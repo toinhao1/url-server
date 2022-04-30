@@ -2,7 +2,7 @@
 	"name": "url-server",
 	"version": "1.0.0",
 	"description": "fun",
-	"main": "index.js",
+	"main": "dist/index.js",
 	"scripts": {
 		"test": "test",
 		"watch": "tsc -w",
