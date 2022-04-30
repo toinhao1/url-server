@@ -26,8 +26,11 @@ const getFullURL = async (req: Request, res: Response) => {
 	const { keyId } = req.params;
 
 	try {
-		const shortUrl = await ShortUrl.find({ key: keyId }).lean();
-		const { fullUrl } = shortUrl[0];
+		const shortUrl = (await ShortUrl.findOne({ key: keyId })) as any;
+		const { fullUrl } = shortUrl;
+		shortUrl.clicks = shortUrl.clicks + 1;
+		await shortUrl.save();
+
 		res.redirect(fullUrl);
 	} catch (err) {
 		console.log(err);

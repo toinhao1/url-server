@@ -4,6 +4,7 @@ export interface ShortURLI extends Document {
 	key: string;
 	fullUrl: string;
 	shortUrl: string;
+	clicks: number;
 }
 
 interface ShortURLIModel extends Model<ShortURLI> {}
@@ -26,6 +27,10 @@ const ShortUrlSchema = new Schema({
 		unique: true,
 		trim: true,
 		lowercase: true,
+	},
+	clicks: {
+		type: Number,
+		default: 0,
 	},
 });
 
