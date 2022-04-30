@@ -1,4 +1,12 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Document, Model } from 'mongoose';
+
+interface ShortURLI extends Document {
+	key: string;
+	fullUrl: string;
+	shortUrl: string;
+}
+
+interface ShortURLIModel extends Model<ShortURLI> {}
 
 //Creat Schema
 const ShortUrlSchema = new Schema({
@@ -21,6 +29,6 @@ const ShortUrlSchema = new Schema({
 	},
 });
 
-const ShortUrl = mongoose.model('shortURLs', ShortUrlSchema);
+const ShortUrl = mongoose.model<ShortURLI, ShortURLIModel>('shortURLs', ShortUrlSchema);
 
 export default ShortUrl;
