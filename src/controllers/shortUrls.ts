@@ -1,5 +1,6 @@
 import { Response, Request } from 'express';
-import ShortUrl from '../models/ShortUrl';
+import ShortUrl, { ShortURLI } from '../models/ShortUrl';
+import { makeid } from '../utils/makeID';
 
 const domain = process.env.DOMAIN_TO_USE;
 
@@ -7,7 +8,7 @@ const create = async (req: Request, res: Response) => {
 	const { url } = req.body;
 
 	try {
-		const newKey = Math.random().toString(36).slice(1, 7);
+		const newKey = makeid(6);
 		const shortenedUrl = `${domain}/${newKey}`;
 		const newLink = new ShortUrl({
 			key: newKey,
@@ -21,4 +22,16 @@ const create = async (req: Request, res: Response) => {
 	}
 };
 
-export { create };
+const getFullURL = async (req: Request, res: Response) => {
+	const { keyId } = req.params;
+
+	try {
+		const shortUrl = await ShortUrl.find({ key: keyId }).lean();
+		const { fullUrl } = shortUrl[0];
+		res.redirect(fullUrl);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+export { create, getFullURL };

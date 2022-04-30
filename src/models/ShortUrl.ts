@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-interface ShortURLI extends Document {
+export interface ShortURLI extends Document {
 	key: string;
 	fullUrl: string;
 	shortUrl: string;
