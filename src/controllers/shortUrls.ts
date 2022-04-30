@@ -1,12 +1,14 @@
 import { Response, Request } from 'express';
 import ShortUrl from '../models/ShortUrl';
 
-const create = async (res: Response, req: Request) => {
+const domain = process.env.DOMAIN_TO_USE;
+
+const create = async (req: Request, res: Response) => {
 	const { url } = req.body;
 
 	try {
 		const newKey = Math.random().toString(36).slice(1, 7);
-		const shortenedUrl = `localhost:3000/${newKey}`;
+		const shortenedUrl = `${domain}/${newKey}`;
 		const newLink = new ShortUrl({
 			key: newKey,
 			fullUrl: url,

@@ -14,7 +14,7 @@ const ShortUrlSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	fullURL: {
+	fullUrl: {
 		type: String,
 		required: true,
 		trim: true,
